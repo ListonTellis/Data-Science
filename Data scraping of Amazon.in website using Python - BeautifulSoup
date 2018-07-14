@@ -46,7 +46,16 @@ seller=seller[1].text
 -------------------------------------------------------------------------------------------------------------------------------
 
 
--- Code to get the list of all the mobile phones with other details
+-- Complete Code to get the list of all the mobile phones with other details
+
+from requests import get
+url='https://www.amazon.in/s/ref=br_asw_smr/259-1839946-1565333?_encoding=UTF8&bbn=1805560031&rh=i%3Aelectronics%2Cn%3A976419031%2Cn%3A%21976420031%2Cn%3A1389401031%2Cp_36%3A1000000-1500000%2Cn%3A1389432031%2Cn%3A1805560031%2Cp_98%3A10440597031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=&pf_rd_r=51FMM0M7J66F92EHZJDX&pf_rd_t=36701&pf_rd_p=0ca80efe-64ad-4f7a-9e73-4d4937945d09&pf_rd_i=desktop'
+response=get(url)
+
+from bs4 import BeautifulSoup
+html_soup=BeautifulSoup(response.text,'html.parser')
+page_container=html_soup.find_all('div',class_='s-item-container')
+
 
 names=[]
 sellers=[]
@@ -55,7 +64,7 @@ old_prices=[]
 total_savings=[]
 
 
-for loop1 in every:
+for loop1 in page_container:
     name=loop1.h2.text
     names.append(name)
     
@@ -80,5 +89,5 @@ for loop1 in every:
     else:
         total_savings.append('0')
     
-mob_list=pd.DataFrame({'Device_name':names,'Seller':sellers,'Offer_price':prices,'MRP':old_prices,'Total_savings':total_savings})
-mob_list
+mobile_list=pd.DataFrame({'Device_name':names,'Seller':sellers,'Offer_price':prices,'MRP':old_prices,'Total_savings':total_savings})
+mobile_list
