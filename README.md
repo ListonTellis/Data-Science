@@ -1,2 +1,2 @@
 
-                An open source Data Science repository to learn and apply towards solving real world problems.
+           An open source Data Science repository to learn and apply towards solving real world problems.
