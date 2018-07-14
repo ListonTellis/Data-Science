@@ -88,6 +88,7 @@ for loop1 in page_container:
         total_savings.append(savings)
     else:
         total_savings.append('0')
-    
+
+import pandas as pd
 mobile_list=pd.DataFrame({'Device_name':names,'Seller':sellers,'Offer_price':prices,'MRP':old_prices,'Total_savings':total_savings})
 mobile_list
